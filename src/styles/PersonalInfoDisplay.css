@@ -1,0 +1,46 @@
+.personal-wrapper{
+    width: 98vw;
+    height: auto;
+    margin: 2vw;
+    display: flex;
+    gap: 2vw;
+}
+.form-wrapper{
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.pInfo-input{
+    width: 100%;
+    text-align: left;
+}
+
+
+/* ----------- RESUME DISPLAY -------------- */
+.resume-display-wrapper{
+    width: 65vw;
+    height: 90vh;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    position: relative;
+}
+.display-header{
+    height: 10%;
+}
+.personal-info-display{
+    position: absolute;
+    width: 20%;
+    height: calc(90% - .5rem);
+    right: 0;
+    background-color: lightgrey;
+}
+.name-display-wrapper{
+    display: flex;
+    justify-content: center;
+    gap: .25rem;
+}
+.desc-wrapper{
+    text-align: left;
+    margin: 2%;
+    width: 75%;
+}

@@ -1,13 +1,11 @@
 import '../styles/App.css';
 import React, { Component } from 'react';
 
-class PersonalDisplay extends Component {
-    constructor(props) {
-        super(props);
-    }
+export default class PersonalDisplay extends Component {
+    
     render(){
         return (
-            <div>Hello world</div>
+            <div className='personal-info-display-div'>{this.props.pInfoVar}</div>
         )
     }
 }

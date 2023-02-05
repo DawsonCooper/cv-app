@@ -1,5 +1,7 @@
 import '../styles/App.css';
 import PersonalInfoForm from './PersonalForm'
+import React from 'react';
+
 function App() {
   return (
     <div className="App">
