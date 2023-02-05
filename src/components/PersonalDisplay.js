@@ -5,7 +5,10 @@ export default class PersonalDisplay extends Component {
     
     render(){
         return (
-            <div className='personal-info-display-div'>{this.props.pInfoVar}</div>
+            <div className='personal-info-display-div'>
+                <h5>{this.props.varName}</h5>
+                {this.props.pInfoVar}
+            </div>
         )
     }
 }

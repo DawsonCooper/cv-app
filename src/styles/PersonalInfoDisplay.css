@@ -26,13 +26,22 @@
 }
 .display-header{
     height: 10%;
+    color: white;
+    background-color: #202A44;
+}
+.personal-info-display hr{
+    border: 2px solid #FFB81C !important;
+    opacity: 1 !important;
+    margin-left: 2.5%;
+    width: 95%;
 }
 .personal-info-display{
     position: absolute;
     width: 20%;
     height: calc(90% - .5rem);
     right: 0;
-    background-color: lightgrey;
+    color: white;
+    background-color: #202A44;
 }
 .name-display-wrapper{
     display: flex;
