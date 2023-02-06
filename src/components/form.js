@@ -1,9 +1,9 @@
 import '../styles/App.css';
 import '../styles/PersonalInfoDisplay.css';
 import React, { Component } from 'react';
-import PersonalInfoDisplay from './PersonalDisplay'
+import Display from './Display'
 import 'bootstrap/dist/css/bootstrap.css';
-import ExperienceForm from './ExperienceForm' 
+
 export default class PersonalInfoForm extends Component {
     constructor() {
         super();
@@ -14,11 +14,22 @@ export default class PersonalInfoForm extends Component {
             pNumber:'',
             email:'',
             description:'',
+            company: '',
+            role: '',
+            jobDescription: '',
+            from: '',
+            to: '',
+            university: '',
+            degree: '',
+            subject: '',
+            eduFrom: '',
+            eduTo: ''
         }
         this.userTyping = this.userTyping.bind(this);
     }
 
     userTyping(e, stateVar) {
+        console.log(this.state)
         switch(stateVar){
             case 'fName':
                 this.setState({
@@ -52,6 +63,57 @@ export default class PersonalInfoForm extends Component {
                     description: e.target.value
                 });
                 break;
+            case 'company':
+                this.setState({
+                    company: e.target.value
+                });
+                break;
+            case 'role':
+                this.setState({
+                    role: e.target.value
+                });
+                break;
+            case 'jobDescription':
+                this.setState({
+                    jobDescription: e.target.value
+                });
+                break;
+            case 'from':
+                console.log(e.target)
+                this.setState({
+                    from: e.target.value
+                });
+                break;
+            case 'to':
+                this.setState({
+                    to: e.target.value
+                });
+                break;
+            case 'university':
+                this.setState({
+                    university: e.target.value
+                });
+                break;
+            case 'degree':
+                this.setState({
+                    degree: e.target.value
+                });
+                    break;
+            case 'subject':
+                this.setState({
+                    subject: e.target.value
+                });
+                    break;
+            case 'eduFrom':
+                this.setState({
+                    eduFrom: e.target.value
+                });
+                    break;
+            case 'eduTo':
+                this.setState({
+                    eduTo: e.target.value
+                });
+                break;
             default:
                 alert('You seem to have summoned a bug refreshing and trying again should clear it up')
         }
@@ -59,7 +121,7 @@ export default class PersonalInfoForm extends Component {
     render(){
         return(
             <div className='personal-wrapper'>
-                <section className='form-wrapper'>
+                <div className='form-wrapper'>
                     <h4>Your Info</h4>
                     <form>
                         <label className='pInfo-input'>First Name:
@@ -81,30 +143,50 @@ export default class PersonalInfoForm extends Component {
                         <input type='text' className='form-control' placeholder='Desciption' onChange={(event) => {this.userTyping(event, 'description')}}></input>
                         </label>
                     </form>
-                    <ExperienceForm />
+                <section className='form-wrapper'>
+                    <h4>Experience</h4>
+                    <form>
+                        <label className='pInfo-input'>Company:
+                        <input type='text' className='form-control' onChange={(event) => {this.userTyping(event, 'company')}} placeholder='Company'></input>
+                        </label>
+                        <label className='pInfo-input'>Role:
+                        <input type='text' className='form-control' onChange={(event) => {this.userTyping(event, 'role')}} placeholder='Role'></input>
+                        </label>
+                        <label className='pInfo-input'>Job Desciption:
+                        <input type='text' className='form-control' onChange={(event) => {this.userTyping(event, 'jobDescription')}} placeholder='Description'></input>
+                        </label>
+                        <label className='pInfo-input'>From:
+                        <input type='text' className='form-control' onChange={(event) => {this.userTyping(event, 'from')}} placeholder='Year'></input>
+                        </label>
+                        <label className='pInfo-input'>To:
+                        <input type='text' className='form-control' onChange={(event) => {this.userTyping(event, 'to')}} placeholder='Year'></input>
+                        </label>
+                    </form>
                 </section>
-                <section className='resume-display-wrapper'>
-                    <h2 className='display-header'>{this.state.fName}'s Resume</h2>
-                    <div className='personal-info-display'>
-                        <h3>Personal Info</h3>
-                        <div className='name-display-wrapper'>
-                            <PersonalInfoDisplay className='fName-display' pInfoVar={this.state.fName} />
-                            <PersonalInfoDisplay className='lName-display' pInfoVar={this.state.lName} /> 
-                        </div>
-                        <hr/>
-                        <PersonalInfoDisplay className='address-display' varName='Address' pInfoVar={this.state.address} />
-                        <hr/>
-                        <PersonalInfoDisplay className='pNumber-display' varName='Phone Number'  pInfoVar={this.state.pNumber} />
-                        <hr/>
-                        <PersonalInfoDisplay className='email-display' varName='Email' pInfoVar={this.state.email} />
-                    </div>
-                    <div className='desc-wrapper'>
-                        <hr/>
-                        <PersonalInfoDisplay className='description-display'varName='Description'  pInfoVar={this.state.description} />
-                        <hr/>
-                    </div>
+                <section className='form-wrapper'>
+                    <h4>Education</h4>
+                    <form>
+                        <label className='pInfo-input'>University Name:
+                        <input type='text' className='form-control' onChange={(event) => {this.userTyping(event, 'university')}} placeholder='University'></input>
+                        </label>
+                        <label className='pInfo-input'>Degree:
+                        <input type='text' className='form-control' onChange={(event) => {this.userTyping(event, 'degree')}} placeholder='Degree'></input>
+                        </label>
+                        <label className='pInfo-input'>Subject:
+                        <input type='text' className='form-control' onChange={(event) => {this.userTyping(event, 'subject')}} placeholder='Subject'></input>
+                        </label>
+                        <label className='pInfo-input'>From:
+                        <input type='text' className='form-control' onChange={(event) => {this.userTyping(event, 'eduFrom')}} placeholder='Year'></input>
+                        </label>
+                        <label className='pInfo-input'>To:
+                        <input type='text' className='form-control' onChange={(event) => {this.userTyping(event, 'eduTo')}} placeholder='Year'></input>
+                        </label>
+                    </form>
                 </section>
+                </div>
+                <Display pInfoObj={this.state} />
             </div>
         );
     }
 }
+

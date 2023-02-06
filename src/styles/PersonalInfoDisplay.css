@@ -21,6 +21,9 @@
 .resume-display-wrapper{
     width: 65vw;
     height: 90vh;
+    position: absolute;
+    
+    top: 0;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     position: relative;
 }
@@ -52,4 +55,12 @@
     text-align: left;
     margin: 2%;
     width: 75%;
+}
+.pFormWrapper{
+    height: 30vh
+}
+.display-section-wrapper{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 2.5vw;
 }
