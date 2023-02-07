@@ -6,7 +6,37 @@ import EducationDisplay from './EducationDisplay';
 export default class Display extends Component {
     
     render(){
-        return <section className='resume-display-wrapper'>
+        const eduDiv = [];
+        const expDiv=[];
+        for(let i=0; i < 1; i++){
+            eduDiv.push(
+            <div key={`edu${i}`}>
+                <div className='display-section-wrapper'> 
+                    <EducationDisplay key={`uni${i}`} varName="University" eduInfoVar={this.props.pInfoObj.university} />
+                    <EducationDisplay key={`degree${i}`} varName="Degree" eduInfoVar={this.props.pInfoObj.degree} />
+                    <EducationDisplay key={`subject${i}`} varName="Subject" eduInfoVar={this.props.pInfoObj.subject} />
+                    <EducationDisplay key={`eduFrom${i}`} varName="From" eduInfoVar={this.props.pInfoObj.eduFrom} />
+                    <EducationDisplay key={`eduTo${i}`} varName="To" eduInfoVar={this.props.pInfoObj.eduTo} />
+
+                </div>
+                <hr/>
+            </div>)
+            }
+            for(let i=0; i < 1; i++){
+                eduDiv.push(
+                <div key={`exp${i}`}>
+                    <div className='display-section-wrapper'> 
+                        <ExperienceDisplay key={`company${i}`} varName='Company' expInfoVar={this.props.pInfoObj.company} />
+                        <ExperienceDisplay key={`role${i}`} varName='Role' expInfoVar={this.props.pInfoObj.role} />
+                        <ExperienceDisplay key={`expFrom${i}`} varName='From' expInfoVar={this.props.pInfoObj.from} />
+                        <ExperienceDisplay key={`expTo${i}`} varName='To' expInfoVar={this.props.pInfoObj.to} />
+                    </div>
+                    <ExperienceDisplay key={`expTo${i}`} varName='Job Description' expInfoVar={this.props.pInfoObj.jobDescription} /><hr/>
+                </div>
+                )
+        }
+        return (
+            <section className='resume-display-wrapper'>
                     <h2 className='display-header'>{this.props.pInfoObj.fName}'s Resume</h2>
                     <div className='personal-info-display'>
                         <h3>Personal Info</h3>
@@ -23,32 +53,15 @@ export default class Display extends Component {
                     </div>
                     <div className='desc-wrapper'>
                         <hr/>
-                        <PersonalInfoDisplay className='description-display'varName='Description'  pInfoVar={this.props.pInfoObj.description} />
+                        <PersonalInfoDisplay className='description-display'varName='Bio'  pInfoVar={this.props.pInfoObj.description} />
                         <hr/>
-                    <div className='display-section-wrapper'>
-                        <ExperienceDisplay varName='Company' expInfoVar={this.props.pInfoObj.company} />
-                        <ExperienceDisplay varName='Role' expInfoVar={this.props.pInfoObj.role} />
-
-                        <ExperienceDisplay varName='From' expInfoVar={this.props.pInfoObj.from} />
-                        <ExperienceDisplay varName='To' expInfoVar={this.props.pInfoObj.to} />
-                    </div>
-                    <ExperienceDisplay varName='Job Description' expInfoVar={this.props.pInfoObj.jobDescription} />
-                    <hr/>
+                    {eduDiv}
                     
+                    {expDiv}
                     
-                    <div className='display-section-wrapper'>
-                        <EducationDisplay varName="University" eduInfoVar={this.props.pInfoObj.university} />
-                        <EducationDisplay varName="Degree" eduInfoVar={this.props.pInfoObj.degree} />
-                        <EducationDisplay varName="Subject" eduInfoVar={this.props.pInfoObj.subject} />
-                        <EducationDisplay varName="From" eduInfoVar={this.props.pInfoObj.eduFrom} />
-                        <EducationDisplay varName="To" eduInfoVar={this.props.pInfoObj.eduTo} />
-                        
                     </div>
-                    <hr/>
-                    </div>
-
+                    
                 </section>
-
-
+        )
     }
 }
