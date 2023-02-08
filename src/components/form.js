@@ -14,22 +14,60 @@ export default class PersonalInfoForm extends Component {
             pNumber:'',
             email:'',
             description:'',
-            company: '',
-            role: '',
-            jobDescription: '',
-            from: '',
-            to: '',
-            university: '',
-            degree: '',
-            subject: '',
-            eduFrom: '',
-            eduTo: ''
+            company: [],
+            role: [],
+            jobDescription: [],
+            from: [],
+            to: [],
+            expNest: [],
+            university: [],
+            degree: [],
+            subject: [],
+            eduFrom: [],
+            eduTo: [],
+            eduNest: []
         }
         this.userTyping = this.userTyping.bind(this);
+        this.addNewEdu = this.addNewEdu.bind(this);
+        this.addNewExp = this.addNewExp.bind(this);
+    }
+    addNewExp(e){
+        this.setState({
+            expNest: this.state.expNest.concat({
+                id: this.state.expNest.length,
+                company: this.state.company,
+                role: this.state.role,
+                jobDescription: this.state.jobDescription,
+                from: this.state.from,
+                to: this.state.to
+            })
+        })
+        e.target.parentElement.childNodes.forEach((item, index) => {
+            if (index <= 4){
+                item.lastChild.value = ''
+            } 
+        })
+        
+    }
+    addNewEdu(e){
+        this.setState({
+            eduNest: this.state.eduNest.concat({
+                id: this.state.eduNest.length,
+                university: this.state.university,
+                degree: this.state.degree,
+                subject: this.state.subject,
+                eduFrom : this.state.eduFrom,
+                eduTo: this.state.eduTo
+            })
+        })
+        e.target.parentElement.childNodes.forEach((item, index) => {
+            if (index <= 4){
+                item.lastChild.value = ''
+            } 
+        })
     }
 
     userTyping(e, stateVar) {
-        console.log(this.state)
         switch(stateVar){
             case 'fName':
                 this.setState({
@@ -47,7 +85,6 @@ export default class PersonalInfoForm extends Component {
                 });
                 break;
             case 'pNumber':
-                console.log(e.target)
                 this.setState({
                     pNumber: e.target.value
                 });
@@ -58,60 +95,69 @@ export default class PersonalInfoForm extends Component {
                 });
                 break;
             case 'description':
-                console.log(e.target)
                 this.setState({
                     description: e.target.value
                 });
                 break;
             case 'company':
+                let compArr = [e.target.value];
                 this.setState({
-                    company: e.target.value
+                    company: compArr
                 });
                 break;
             case 'role':
+                let roleArr = [e.target.value]
                 this.setState({
-                    role: e.target.value
+                    role: roleArr
                 });
                 break;
             case 'jobDescription':
+                let jobDescArr= [e.target.value]
                 this.setState({
-                    jobDescription: e.target.value
+                    jobDescription: jobDescArr
                 });
                 break;
             case 'from':
-                console.log(e.target)
+                let jobFromArr = [e.target.value]
+                
                 this.setState({
-                    from: e.target.value
+                    from: jobFromArr
                 });
                 break;
             case 'to':
+                let jobToArr = [e.target.value]
                 this.setState({
-                    to: e.target.value
+                    to: jobToArr
                 });
                 break;
             case 'university':
+                let uniArr = [e.target.value]
                 this.setState({
-                    university: e.target.value
+                    university: uniArr
                 });
                 break;
             case 'degree':
+                let degreeArr = [e.target.value]
                 this.setState({
-                    degree: e.target.value
+                    degree: degreeArr
                 });
                     break;
             case 'subject':
+                let subArr = [e.target.value]
                 this.setState({
-                    subject: e.target.value
+                    subject: subArr
                 });
                     break;
             case 'eduFrom':
+                let eduFromArr = [e.target.value]
                 this.setState({
-                    eduFrom: e.target.value
+                    eduFrom: eduFromArr
                 });
                     break;
             case 'eduTo':
+                let eduToArr = [e.target.value]
                 this.setState({
-                    eduTo: e.target.value
+                    eduTo: eduToArr
                 });
                 break;
             default:
@@ -143,6 +189,7 @@ export default class PersonalInfoForm extends Component {
                         <input type='text' className='form-control' placeholder='Desciption' onChange={(event) => {this.userTyping(event, 'description')}}></input>
                         </label>
                     </form>
+                    <hr/>
                 <section className='form-wrapper'>
                     <h4>Experience</h4>
                     <form>
@@ -161,7 +208,9 @@ export default class PersonalInfoForm extends Component {
                         <label className='pInfo-input'>To:
                         <input type='text' className='form-control' onChange={(event) => {this.userTyping(event, 'to')}} placeholder='Year'></input>
                         </label>
-                    </form>
+                        <button type='button'className='addNewExperience btn btn-success' onClick={(e) => {this.addNewExp(e)}}>Add Experience</button>
+                    <hr/></form>
+                    
                 </section>
                 <section className='form-wrapper'>
                     <h4>Education</h4>
@@ -181,6 +230,7 @@ export default class PersonalInfoForm extends Component {
                         <label className='pInfo-input'>To:
                         <input type='text' className='form-control' onChange={(event) => {this.userTyping(event, 'eduTo')}} placeholder='Year'></input>
                         </label>
+                        <button type='button' className='addNewEducation btn btn-success' onClick={(e) => {this.addNewEdu(e)}}>Add Education</button>
                     </form>
                 </section>
                 </div>

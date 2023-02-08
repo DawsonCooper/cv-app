@@ -1,5 +1,5 @@
 .personal-wrapper{
-    width: 98vw;
+    width: auto;
     height: auto;
     margin: 2vw;
     display: flex;
@@ -9,6 +9,7 @@
     width: 30vw;
     display: flex;
     flex-direction: column;
+    gap: 1vh;
 }
 
 .pInfo-input{
@@ -19,10 +20,9 @@
 
 /* ----------- RESUME DISPLAY -------------- */
 .resume-display-wrapper{
-    width: 65vw;
-    height: 90vh;
+    width: 62.5vw;
+    min-height: 110vh;
     position: absolute;
-    
     top: 0;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     position: relative;
@@ -63,4 +63,7 @@
     display: flex;
     justify-content: space-between;
     margin-right: 2.5vw;
+}
+.btn-success{
+    margin-top: 1vh;
 }
