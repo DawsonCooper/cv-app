@@ -8,9 +8,9 @@ export default class Display extends Component {
     render(){
         const eduDiv = [];
         const expDiv=[];
+        console.log('in display edu',this.props.education)
         
-        this.props.pInfoObj.eduNest.forEach((item) =>{
-            console.log(item)
+        this.props.education.forEach((item) =>{
             eduDiv.push(
             <div key={`edu${item.id}`}>
                 <div className='display-section-wrapper'> 
@@ -25,8 +25,8 @@ export default class Display extends Component {
             </div>)
         })
             
-            
-            this.props.pInfoObj.expNest.forEach((item) => {
+            console.log('in display exp',this.props.experience)
+            this.props.experience.forEach((item) => {
                 expDiv.push(
                 <div key={`exp${item.id}`}>
                     <div className='display-section-wrapper'> 
@@ -41,23 +41,23 @@ export default class Display extends Component {
         })
         return (
             <section className='resume-display-wrapper'>
-                    <h2 className='display-header'>{this.props.pInfoObj.fName}'s Resume</h2>
+                    <h2 className='display-header'>{this.props.person.fName}'s Resume</h2>
                     <div className='personal-info-display'>
                         <h3>Personal Info</h3>
                         <div className='name-display-wrapper'>
-                            <PersonalInfoDisplay className='fName-display' pInfoVar={this.props.pInfoObj.fName} />
-                            <PersonalInfoDisplay className='lName-display' pInfoVar={this.props.pInfoObj.lName} /> 
+                            <PersonalInfoDisplay className='fName-display' pInfoVar={this.props.person.fName} />
+                            <PersonalInfoDisplay className='lName-display' pInfoVar={this.props.person.lName} /> 
                         </div>
                         <hr/>
-                        <PersonalInfoDisplay className='address-display' varName='Address' pInfoVar={this.props.pInfoObj.address} />
+                        <PersonalInfoDisplay className='address-display' varName='Address' pInfoVar={this.props.person.address} />
                         <hr/>
-                        <PersonalInfoDisplay className='pNumber-display' varName='Phone Number'  pInfoVar={this.props.pInfoObj.pNumber} />
+                        <PersonalInfoDisplay className='pNumber-display' varName='Phone Number'  pInfoVar={this.props.person.pNumber} />
                         <hr/>
-                        <PersonalInfoDisplay className='email-display' varName='Email' pInfoVar={this.props.pInfoObj.email} />
+                        <PersonalInfoDisplay className='email-display' varName='Email' pInfoVar={this.props.person.email} />
                     </div>
                     <div className='desc-wrapper'>
                         <hr/>
-                        <PersonalInfoDisplay className='description-display'varName='Bio'  pInfoVar={this.props.pInfoObj.description} />
+                        <PersonalInfoDisplay className='description-display'varName='Bio'  pInfoVar={this.props.person.description} />
                         <hr/>
                     {eduDiv}
                     

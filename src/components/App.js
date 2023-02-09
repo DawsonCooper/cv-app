@@ -1,5 +1,5 @@
 import '../styles/App.css';
-import PersonalInfoForm from './Form'
+import Form from './FormFunction'
 import React from 'react';
 
 
@@ -7,7 +7,7 @@ import React from 'react';
 function App() {
   return (
     <div className="App">
-      <PersonalInfoForm />
+      <Form />
     </div>
   );
 }
