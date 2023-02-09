@@ -5,21 +5,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React, { useState } from 'react';
 
 function Form (props){
-    const [eduObj, addEdu] = useState([{
-        id: 0,
-        university: 'example',
-        degree: 'example',
-        subject: 'example',
-        eduFrom: 'example',
-        eduTo: 'example'
-    }])
-    const [expObj, addExp] = useState([{
-        id: 0,
-        company: 'example',
-        role: 'example',
-        jobDescription: 'example',
-        from: 'example',
-        to: 'example'}])
+    const [eduObj, addEdu] = useState([])
+    const [expObj, addExp] = useState([])
     const [person, modPerson] = useState({
         fName:'',
         lName:'',
@@ -29,7 +16,7 @@ function Form (props){
         description:'',
     })
     const [experience, modExperience] = useState({
-        id: expObj.length,
+        id: 0,
         company: [],
         role: [],
         jobDescription: [],
@@ -37,7 +24,7 @@ function Form (props){
         to: [],
     })
     const [education, modEducation] = useState({
-        id: eduObj.length,
+        id: 0,
         university: [],
         degree: [],
         subject: [],
@@ -102,9 +89,16 @@ function Form (props){
     }
 
     const addNewEdu = (e) => {
-        let temp = [...eduObj];
-        let newObj = temp.concat(education);
-        addEdu({eduObj: newObj});
+        modEducation({...education, id: Math.floor(Math.random() * 1000)});
+        try{
+            let temp = [...eduObj];
+            addEdu({eduObj: temp.concat(education)});
+        }catch(error){
+            if (error.message === 'Invalid attempt to spread non-iterable instance'){
+                let temp = [...eduObj.eduObj]
+                addEdu({eduObj: temp.concat(education)});
+            }
+        }
         e.target.parentElement.childNodes.forEach((item, index) => {
             if (index <= 4){
                 item.lastChild.value = '';
@@ -114,9 +108,19 @@ function Form (props){
     }
 
     const addNewExp = (e) => {
-        let temp = [...expObj];
-        let newObj = temp.concat(experience)
-        addExp({expObj: newObj});
+        modExperience({...experience, id: Math.floor(Math.random() * 1000)})
+        try{
+            let temp = [...expObj];
+            addExp({expObj: temp.concat(experience)});
+        }catch(error){
+            if (error.message === 'Invalid attempt to spread non-iterable instance'){
+                let temp = [...expObj.expObj]
+                addExp({expObj: temp.concat(experience)});
+            }
+        }
+        
+        
+        
         e.target.parentElement.childNodes.forEach((item, index) => {
             if (index <= 4){
                 item.lastChild.value = '';

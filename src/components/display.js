@@ -8,24 +8,40 @@ export default class Display extends Component {
     render(){
         const eduDiv = [];
         const expDiv=[];
-        console.log('in display edu',this.props.education)
-        
-        this.props.education.forEach((item) =>{
-            eduDiv.push(
-            <div key={`edu${item.id}`}>
-                <div className='display-section-wrapper'> 
-                    <EducationDisplay key={`uni${item.id}`} varName="University" eduInfoVar={item.university} />
-                    <EducationDisplay key={`degree${item.id}`} varName="Degree" eduInfoVar={item.degree} />
-                    <EducationDisplay key={`subject${item.id}`} varName="Subject" eduInfoVar={item.subject} />
-                    <EducationDisplay key={`eduFrom${item.id}`} varName="From" eduInfoVar={item.eduFrom} />
-                    <EducationDisplay key={`eduTo${item.id}`} varName="To" eduInfoVar={item.eduTo} />
+        try{
+            this.props.education.forEach((item) =>{
+                eduDiv.push(
+                <div key={`edu${item.id}`}>
+                    <div className='display-section-wrapper'> 
+                        <EducationDisplay key={`uni${item.id}`} varName="University" eduInfoVar={item.university} />
+                        <EducationDisplay key={`degree${item.id}`} varName="Degree" eduInfoVar={item.degree} />
+                        <EducationDisplay key={`subject${item.id}`} varName="Subject" eduInfoVar={item.subject} />
+                        <EducationDisplay key={`eduFrom${item.id}`} varName="From" eduInfoVar={item.eduFrom} />
+                        <EducationDisplay key={`eduTo${item.id}`} varName="To" eduInfoVar={item.eduTo} />
 
-                </div>
-                <hr/>
-            </div>)
-        })
-            
-            console.log('in display exp',this.props.experience)
+                    </div>
+                    <hr/>
+                </div>)
+            })
+        }catch(error){
+            if (error.message === 'this.props.education.forEach is not a function'){
+                this.props.education.eduObj.forEach((item) =>{
+                    eduDiv.push(
+                    <div key={`edu${item.id}`}>
+                        <div className='display-section-wrapper'> 
+                            <EducationDisplay key={`uni${item.id}`} varName="University" eduInfoVar={item.university} />
+                            <EducationDisplay key={`degree${item.id}`} varName="Degree" eduInfoVar={item.degree} />
+                            <EducationDisplay key={`subject${item.id}`} varName="Subject" eduInfoVar={item.subject} />
+                            <EducationDisplay key={`eduFrom${item.id}`} varName="From" eduInfoVar={item.eduFrom} />
+                            <EducationDisplay key={`eduTo${item.id}`} varName="To" eduInfoVar={item.eduTo} />
+    
+                        </div>
+                        <hr/>
+                    </div>)
+                })
+            }
+        }
+        try{
             this.props.experience.forEach((item) => {
                 expDiv.push(
                 <div key={`exp${item.id}`}>
@@ -38,7 +54,25 @@ export default class Display extends Component {
                     <ExperienceDisplay key={`expJobDesc${item.id}`} varName='Job Description' expInfoVar={item.jobDescription} /><hr/>
                 </div>
                 )
-        })
+            })
+        }catch(error){
+            if (error.message === 'this.props.experience.forEach is not a function'){
+                this.props.experience.expObj.forEach((item) => {
+                    expDiv.push(
+                    <div key={`exp${item.id}`}>
+                        <div className='display-section-wrapper'> 
+                            <ExperienceDisplay key={`company${item.id}`} varName='Company' expInfoVar={item.company} />
+                            <ExperienceDisplay key={`role${item.id}`} varName='Role' expInfoVar={item.role} />
+                            <ExperienceDisplay key={`expFrom${item.id}`} varName='From' expInfoVar={item.from} />
+                            <ExperienceDisplay key={`expTo${item.id}`} varName='To' expInfoVar={item.to} />
+                        </div>
+                        <ExperienceDisplay key={`expJobDesc${item.id}`} varName='Job Description' expInfoVar={item.jobDescription} /><hr/>
+                    </div>
+                    )
+                })
+            }
+        }
+        
         return (
             <section className='resume-display-wrapper'>
                     <h2 className='display-header'>{this.props.person.fName}'s Resume</h2>
